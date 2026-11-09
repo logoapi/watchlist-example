@@ -2,7 +2,7 @@
 
 A static stock and crypto watchlist: 10 symbols (stocks, an ETF, coins), each logo in light and dark. Plain HTML, no framework, no build needed to view.
 
-Open `index.html` in a browser. That is the whole app.
+Live demo: [logoapi.github.io/watchlist-example](https://logoapi.github.io/watchlist-example/). Or open `index.html` in a browser.
 
 Each logo is one URL, no key:
 

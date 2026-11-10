@@ -12,8 +12,15 @@ const WATCHLIST = [
 const rows = WATCHLIST.map(([symbol, kind]) => ({ symbol, kind, light: url(symbol), dark: darkUrl(symbol) }));
 const block = `// BEGIN ROWS\nconst ROWS = ${JSON.stringify(rows, null, 2)};\n// END ROWS`;
 
-const html = readFileSync('index.html', 'utf8');
-const next = html.replace(/\/\/ BEGIN ROWS[\s\S]*?\/\/ END ROWS/, block);
-if (next === html && !html.includes(block)) throw new Error('ROWS markers not found in index.html');
-writeFileSync('index.html', next);
-console.log(rows.map((r) => `${r.symbol}\t${r.light}\t${r.dark}`).join('\n'));
+const DOMAINS = ['stripe.com', 'github.com', 'notion.so', 'openai.com'];
+const domains = DOMAINS.map((symbol) => ({ symbol, kind: 'Domain', light: url(symbol), dark: darkUrl(symbol) }));
+const domainBlock = `// BEGIN DOMAINS\nconst DOMAINS = ${JSON.stringify(domains, null, 2)};\n// END DOMAINS`;
+
+let html = readFileSync('index.html', 'utf8');
+for (const [name, b] of [['ROWS', block], ['DOMAINS', domainBlock]]) {
+  const re = new RegExp(`// BEGIN ${name}[\\s\\S]*?// END ${name}`);
+  if (!re.test(html)) throw new Error(`${name} markers not found in index.html`);
+  html = html.replace(re, () => b);
+}
+writeFileSync('index.html', html);
+console.log([...rows, ...domains].map((r) => `${r.symbol}\t${r.light}\t${r.dark}`).join('\n'));

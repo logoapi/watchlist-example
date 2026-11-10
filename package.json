@@ -6,9 +6,10 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "build": "node build.mjs"
+    "build": "node build.mjs",
+    "start": "node build.mjs && node serve.mjs"
   },
   "dependencies": {
-    "stock-ticker-logos": "0.3.1"
+    "stock-ticker-logos": "^0.3.3"
   }
 }

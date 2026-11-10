@@ -36,6 +36,11 @@
     <thead><tr><th>Symbol</th><th>Type</th><th>Light</th><th>Dark</th></tr></thead>
     <tbody id="rows"></tbody>
   </table>
+  <h2>Companies by domain</h2>
+  <table>
+    <thead><tr><th>Domain</th><th>Type</th><th>Light</th><th>Dark</th></tr></thead>
+    <tbody id="domains"></tbody>
+  </table>
   <p style="margin-top:24px">Logos by <a href="https://logoapi.sh">logoapi.sh</a>. URLs built with <a href="https://www.npmjs.com/package/stock-ticker-logos">stock-ticker-logos</a>.</p>
 </main>
 <script>
@@ -105,8 +110,38 @@ const ROWS = [
 ];
 // END ROWS
 
-const tbody = document.getElementById('rows');
-for (const r of ROWS) {
+// BEGIN DOMAINS
+const DOMAINS = [
+  {
+    "symbol": "stripe.com",
+    "kind": "Domain",
+    "light": "https://logoapi.sh/icon/stripe.com.svg",
+    "dark": "https://logoapi.sh/dark/icon/stripe.com.svg"
+  },
+  {
+    "symbol": "github.com",
+    "kind": "Domain",
+    "light": "https://logoapi.sh/icon/github.com.svg",
+    "dark": "https://logoapi.sh/dark/icon/github.com.svg"
+  },
+  {
+    "symbol": "notion.so",
+    "kind": "Domain",
+    "light": "https://logoapi.sh/icon/notion.so.svg",
+    "dark": "https://logoapi.sh/dark/icon/notion.so.svg"
+  },
+  {
+    "symbol": "openai.com",
+    "kind": "Domain",
+    "light": "https://logoapi.sh/icon/openai.com.svg",
+    "dark": "https://logoapi.sh/dark/icon/openai.com.svg"
+  }
+];
+// END DOMAINS
+
+function render(id, list) {
+const tbody = document.getElementById(id);
+for (const r of list) {
   const tr = document.createElement('tr');
   tr.innerHTML =
     '<td class="sym"></td><td class="kind"></td>' +
@@ -119,6 +154,9 @@ for (const r of ROWS) {
   dark.src = r.dark; dark.alt = r.symbol + ' logo, dark version';
   tbody.appendChild(tr);
 }
+}
+render('rows', ROWS);
+render('domains', DOMAINS);
 </script>
 </body>
 </html>

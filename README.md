@@ -22,6 +22,14 @@ npm install
 npm run build
 ```
 
+Using React? [react-stock-logo](https://www.npmjs.com/package/react-stock-logo) renders the same logos as a component:
+
+```jsx
+import { StockLogo } from 'react-stock-logo';
+
+<StockLogo ticker="AAPL" theme="dark" shape="square" size={32} />
+```
+
 Ticker and crypto logo URLs: no rate limit, no key. Docs: [logoapi.sh/docs](https://logoapi.sh/docs).
 
 License: MIT.
